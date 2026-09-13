@@ -109,6 +109,7 @@ dialog.raise-panel::backdrop { background: rgb(0 0 0 / 82%); animation: raise-ba
 @keyframes screen-clean-sweep { 0% { left: -45%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 .raise-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .raise-panel h2 { margin: 22px 0 0; font-size: clamp(26px, 7vw, 40px); }
+.raise-panel h2, .raise-panel button, .raise-panel output { font-weight: 800; }
 .raise-panel output { display: block; margin: 4px 0 16px; font-size: clamp(56px, 14vw, 100px); line-height: 1; }
 .stepper, .shortcuts { display: flex; gap: 8px; }
 .stepper button, .shortcuts button { flex: 1; border-color: var(--line); background: var(--surface-raised); color: var(--text); }
