@@ -89,11 +89,9 @@ export function ServiceWorkerRegistration({ children }: { children: ReactNode })
     document.addEventListener("visibilitychange", handleVisibility);
 
     if (!("serviceWorker" in navigator)) setStatus("unsupported");
-    else if (process.env.NODE_ENV === "development") {
-      void navigator.serviceWorker.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())));
-      setStatus("unsupported");
-    } else {
-      void navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).then((registration) => {
+    else {
+      const serviceWorkerUrl = process.env.NODE_ENV === "development" ? "/sw-dev.js" : "/sw.js";
+      void navigator.serviceWorker.register(serviceWorkerUrl, { updateViaCache: "none" }).then((registration) => {
         registrationRef.current = registration;
         const inspect = () => {
           if (registration.waiting) setStatus("update-available");
