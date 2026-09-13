@@ -8,7 +8,11 @@ declare global {
   }
 }
 
-declare const self: { __SW_MANIFEST: (PrecacheEntry | string)[] | undefined };
+declare const self: {
+  __SW_MANIFEST: (PrecacheEntry | string)[] | undefined;
+  skipWaiting: () => Promise<void>;
+  addEventListener: (type: "message", listener: (event: { data?: { type?: string } }) => void) => void;
+};
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
@@ -17,6 +21,10 @@ const serwist = new Serwist({
   navigationPreload: true,
   disableDevLogs: true,
   runtimeCaching: defaultCache,
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") void self.skipWaiting();
 });
 
 serwist.addEventListeners();

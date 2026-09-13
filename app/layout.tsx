@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", colorScheme: "dark", themeColor: "#000000" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en"><body><ServiceWorkerRegistration />{children}</body></html>;
+  return <html lang="en"><body><ServiceWorkerRegistration>{children}</ServiceWorkerRegistration></body></html>;
 }
